@@ -18,6 +18,10 @@ function ProductList() {
       .then(data => setProducts(data));
   }, []);
 
+  const handleBuyNow = (productId) => {
+    navigate(`/product/${productId}`);
+  };
+
   const filteredProducts = products
     .filter(product => 
       product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -97,12 +101,25 @@ function ProductList() {
             <h3 className="text-lg font-semibold">{product.title}</h3>
             <p className="text-xl font-bold text-blue-600">${product.price}</p>
             <Link to={`/product/${product.id}`} className="text-blue-500 hover:underline">View Details</Link>
-            <button 
-              onClick={() => addToCart(product)} 
-              className="mt-4 w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
-            >
-              Add to Cart
-            </button>
+            
+            {/* Button Group */}
+            <div className="flex justify-between items-center mt-4">
+              {/* Add to Cart Button */}
+              <button 
+                onClick={() => addToCart(product)} 
+                className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+              >
+                Add to Cart
+              </button>
+
+              {/* Buy Now Button */}
+              <button 
+                onClick={() => handleBuyNow(product.id)} 
+                className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
+              >
+                Buy Now
+              </button>
+            </div>
           </div>
         ))}
       </div>
