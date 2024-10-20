@@ -5,7 +5,6 @@ import { CartContext } from '../context/CartContext';
 
 function ProductList() {
   const [products, setProducts] = useState([]);
-  const [searchTerm, setSearchTerm] = useState('');
   const [sortType, setSortType] = useState('');
   const [filterCategory, setFilterCategory] = useState('');
   const [priceRange, setPriceRange] = useState([0, 1000]);
@@ -24,9 +23,6 @@ function ProductList() {
 
   const filteredProducts = products
     .filter(product => 
-      product.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      product.description.toLowerCase().includes(searchTerm.toLowerCase()))
-    .filter(product => 
       (filterCategory ? product.category === filterCategory : true) &&
       product.price >= priceRange[0] && product.price <= priceRange[1]
     )
@@ -39,18 +35,7 @@ function ProductList() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="text-3xl font-bold text-center mb-8">Product Catalog</h1>
-
-      {/* Search Bar */}
-      <div className="mb-6 flex items-center justify-center">
-        <input 
-          type="text" 
-          placeholder="Search for products..." 
-          value={searchTerm} 
-          onChange={e => setSearchTerm(e.target.value)} 
-          className="p-2 border border-gray-300 rounded-lg w-full max-w-md focus:outline-none focus:ring focus:ring-blue-300"
-        />
-      </div>
+      
 
       {/* Sort and Filter Options */}
       <div className="flex flex-col md:flex-row justify-between mb-6 space-y-4 md:space-y-0 md:space-x-4">
@@ -98,7 +83,10 @@ function ProductList() {
               alt={product.title} 
               className="w-full h-40 object-contain mb-4"
             />
-            <h3 className="text-lg font-semibold">{product.title}</h3>
+            <h3 className="text-lg font-semibold">
+              {product.title.length > 10 ? product.title.slice(0, 10) + '...' : product.title}
+            </h3>
+
             <p className="text-xl font-bold text-blue-600">${product.price}</p>
             <Link to={`/product/${product.id}`} className="text-blue-500 hover:underline">View Details</Link>
             
@@ -125,16 +113,8 @@ function ProductList() {
       </div>
 
       {/* Go to Cart Button */}
-      <div className="mt-8 flex justify-center">
-        <button 
-          className="bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition-colors"
-          onClick={() => navigate('/cart')}
-        >
-          Go to Cart
-        </button>
-      </div>
+      
     </div>
   );
 }
-
 export default ProductList;
