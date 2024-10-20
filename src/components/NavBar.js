@@ -33,7 +33,7 @@ function NavBar() {
     <nav className="bg-blue-600 p-4 shadow-md sticky top-0 z-50">
       <div className="container mx-auto flex justify-between items-center">
         {/* Logo/Brand Name */}
-        <Link to="/" className="text-white text-2xl font-bold">
+        <Link to="/product-catalog" className="text-white text-2xl font-bold">
           MyStore
         </Link>
 
@@ -61,7 +61,7 @@ function NavBar() {
 
         {/* Navigation Links and Cart */}
         <div className="hidden md:flex items-center space-x-4">
-          <Link to="/" className="text-white hover:text-gray-200 transition-colors">Home</Link>
+          <Link to="/product-catalog" className="text-white hover:text-gray-200 transition-colors">Home</Link>
           <Link to="/products" className="text-white hover:text-gray-200 transition-colors">Products</Link>
           <Link to="/cart" className="relative text-white hover:text-gray-200 transition-colors flex items-center">
             <FaShoppingCart size={24} />
