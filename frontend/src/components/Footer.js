@@ -10,7 +10,7 @@ function Footer() {
   return (
     <footer className="bg-blue-600 p-4 shadow-md text-white py-4">
       <div className="container mx-auto text-center">
-        <p className="text-sm">© 2024 MyStore. All rights reserved.</p>
+        <p className="text-sm">© 2025 MyStore. All rights reserved.</p>
         <p className="text-sm">Made with ❤️ by Darshan Pakhale</p>
 
         {/* Social Media Icons */}

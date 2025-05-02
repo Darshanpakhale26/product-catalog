@@ -17,6 +17,12 @@ function ProductList() {
       .then((data) => setProducts(data));
   }, []);
 
+  // add Loading state
+  if (!products.length) {
+    return <div className="text-center py-10">Loading...</div>;
+  }
+
+ 
   const handleBuyNow = (productId) => {
     navigate(`/product/${productId}`);
   };
